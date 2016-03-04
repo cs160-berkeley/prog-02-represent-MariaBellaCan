@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@android:color/white"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:minHeight="152dp"
+    android:layout_margin="12dp"
+    android:elevation="2dp"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/rep_image"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:paddingTop="8dp"
+            android:background="@android:color/background_light"
+            app:civ_border_width="2dp"
+            app:civ_border_color="@android:color/background_light"/>
+
+        <!-- the website and email links-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="match_parent"
+                android:id="@+id/website_link"
+                android:src="@drawable/website_icon"
+                android:scaleType="fitCenter"
+                android:layout_marginRight="16dp"/>
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="match_parent"
+                android:id="@+id/email_link"
+                android:src="@drawable/mail_icon"
+                android:scaleType="fitCenter"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <!-- rep's name and party-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:id="@+id/party_icon"
+                android:layout_marginRight="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Barbara Boxer"
+                android:gravity="center_vertical"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:id="@+id/congressional_name"/>
+        </LinearLayout>
+
+        <!-- latest tweet-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:id="@+id/twitter_icon"
+                android:src="@drawable/twitter_icon"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:textSize="14dp"
+                android:id="@+id/latest_tweet"
+                android:textColor="#000000"
+                android:text="After watching the #GOPdebate I have only 3 words: Hillary for President! #ImWithHer"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

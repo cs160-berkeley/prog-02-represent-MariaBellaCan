@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Campaign Updates 2016</string>
+    <string name="hello_world">Hello World!</string>
+    <string name="title_activity_vote_view">VoteView</string>
+    <string name="hello_round">Hello Round World!</string>
+    <string name="hello_square">Hello Square World!</string>
+    <string name="title_activity_congress_person_view">CongressPersonView</string>
+</resources>
