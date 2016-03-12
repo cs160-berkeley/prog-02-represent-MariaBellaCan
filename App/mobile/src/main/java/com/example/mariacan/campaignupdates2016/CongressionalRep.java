@@ -10,14 +10,18 @@ public class CongressionalRep {
     String website;
     String email;
     String termEnds;
-    char party;
+    String party;
+    String bioguideid;
+    String title;
 
-    public CongressionalRep(String name, String tweet, String website, char party, String email, String termEnds){
+    public CongressionalRep(String name, String tweet, String website, String party, String email, String termEnds, String bioguideid, String title){
         this.name = name;
         this.tweet = tweet;
         this.website = website;
         this.party = party;
         this.email = email;
         this.termEnds = termEnds;
+        this.bioguideid = bioguideid;
+        this.title = title;
     }
 }

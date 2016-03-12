@@ -5,6 +5,9 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -16,27 +19,64 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class MainActivity extends FragmentActivity implements SensorEventListener{
+import java.util.ArrayList;
+
+public class MainActivity extends FragmentActivity implements SensorEventListener {
 
     private static final float SHAKE = 14;
     SensorManager sensorManager;
+    static ArrayList<String> names;
+    static ArrayList<String> parties;
+    static ArrayList<String> titles;
+    static int count;
+    static String state;
+    static String county;
+    static String obama;
+    static String romney;
+    static ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
-        if (getIntent().getByteArrayExtra("zipcode") == null){
+        this.viewPager = (ViewPager) findViewById(R.id.viewPager);
+        if (getIntent().getByteArrayExtra("congressionalInfo") == null){
             return;
         }
-        VoteViewFragment.zipCode = new String(getIntent().getByteArrayExtra("zipcode"));
+        names = new ArrayList<>();
+        parties = new ArrayList<>();
+        titles = new ArrayList<>();
+        String data = new String(getIntent().getByteArrayExtra("congressionalInfo"));
+        System.out.println("DATA IS " + data);
+        this.populateCongressionalInfo(data);
+        //VoteViewFragment.zipCode = new String(getIntent().getByteArrayExtra("congressionalInfo"));
         CongressPersonAdapter congressPersonAdapter = new CongressPersonAdapter(getSupportFragmentManager());
         viewPager.setAdapter(congressPersonAdapter);
 
         this.sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_FASTEST);
+
+    }
+
+    private void populateCongressionalInfo(String string){
+        String[] data = string.split("&");
+        count = Integer.parseInt(data[0]);
+        county = data[1];
+        state = data[2];
+        obama = data[3];
+        romney = data[4];
+
+        for (int i = 5; i < (data.length); i+=3){
+            names.add(data[i]);
+            if (data[i + 1].equals("D")){
+                parties.add("Democrat");
+            } else {
+                parties.add("Republican");
+            }
+            titles.add(data[i + 2]);
+        }
     }
 
     @Override
@@ -69,14 +109,18 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
 
     private class CongressPersonAdapter extends FragmentPagerAdapter {
 
-        Fragment[] fragments = new Fragment[4];
+        Fragment[] fragments = new Fragment[count + 1];
+
 
         private CongressPersonAdapter(FragmentManager fragmentManager) {
             super(fragmentManager);
-            fragments[0] = new CongressFragment();
-            fragments[1] = new CongressFragment();
-            fragments[2] = new CongressFragment();
-            fragments[3] = new VoteViewFragment();
+            for (int i = 0; i < count; i++){
+                fragments[i] = new CongressFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt("index", i);
+                fragments[i].setArguments(bundle);
+            }
+            fragments[count] = new VoteViewFragment();
         }
 
         @Override
@@ -94,14 +138,25 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
 
     public static class CongressFragment extends Fragment {
 
+
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.activity_congress_person_view, container, false);
+            final View rootView = inflater.inflate(R.layout.activity_congress_person_view, container, false);
+            int index = getArguments().getInt("index");
+
+            TextView name = (TextView) rootView.findViewById(R.id.name);
+            name.setText(names.get(index));
+            TextView party = (TextView) rootView.findViewById(R.id.party);
+            party.setText(parties.get(index));
+            TextView title = (TextView) rootView.findViewById(R.id.title);
+            title.setText(titles.get(index) + ".");
 
             rootView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Message.messageSend("detailedView", "message".getBytes(), getActivity());
+                    byte item = (byte) viewPager.getCurrentItem();
+                    byte[] message = new byte[]{item};
+                    Message.messageSend("detailedView", message, getActivity());
                 }
             });
             return rootView;
@@ -117,16 +172,17 @@ public class MainActivity extends FragmentActivity implements SensorEventListene
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.activity_vote_view, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.city_name);
-            String cityName;
-            if (zipCode.equals("91741")){
-                cityName = "Los Angeles";
-            } else if (zipCode.equals("11111")){
-                cityName = "San Diego";
-            } else{
-                cityName = "Reno";
-            }
-            textView.setText(cityName);
+            TextView countyName = (TextView) rootView.findViewById(R.id.county_name);
+            TextView stateName = (TextView) rootView.findViewById(R.id.state_name);
+            TextView obamaP = (TextView) rootView.findViewById(R.id.obama);
+            TextView romneyP = (TextView) rootView.findViewById(R.id.romney);
+            System.out.println("COUTNY IS" + county);
+            System.out.println("State is " + state);
+            countyName.setText(county);
+            stateName.setText(state);
+            obamaP.setText(obama);
+            romneyP.setText(romney);
+
             return rootView;
         }
     }

@@ -34,6 +34,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@android:color/white"
                 android:orientation="vertical"
                 android:layout_margin="8dp"
                 android:elevation="4dp"
@@ -50,13 +51,12 @@
                         android:textColor="@color/colorDeepBlue"
                         android:textStyle="bold"
                         android:layout_marginRight="8dp"
-                        android:textSize="24sp"/>
+                        android:textSize="16sp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/party_value"
-                        android:textSize="16sp"
-                        android:text="Democrat"/>
+                        android:textSize="14sp"/>
 
                 </LinearLayout>
 
@@ -64,7 +64,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp">
                     <TextView
                         android:layout_width="148dp"
                         android:layout_height="wrap_content"
@@ -73,13 +74,12 @@
                         android:textStyle="bold"
                         android:textColor="@color/colorDeepBlue"
                         android:layout_marginRight="8dp"
-                        android:textSize="24sp"/>
+                        android:textSize="16sp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/term_value"
-                        android:text="Jan 3, 2017"
-                        android:textSize="16sp"/>
+                        android:textSize="14sp"/>
                 </LinearLayout>
                 </LinearLayout>
 
@@ -87,6 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:background="@android:color/white"
                 android:layout_margin="8dp"
                 android:elevation="4dp"
                 android:padding="8dp">
@@ -104,38 +105,47 @@
                         android:textColor="@color/colorDeepBlue"
                         android:textStyle="bold"
                         android:layout_marginRight="8dp"
-                        android:textSize="24sp"/>
+                        android:textSize="16sp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/committee_value"
-                        android:textSize="16sp"
-                        android:text="Environment (ranking), Ethics (ranking), Foreign Relations"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="148dp"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/bill_title"
-                        android:text="Bills Sponsored"
-                        android:textColor="@color/colorDeepBlue"
-                        android:layout_marginRight="8dp"
-                        android:textStyle="bold"
-                        android:textSize="24sp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/bill_value"
-                        android:textSize="16sp"
-                        android:text="Feb 14, 2013 - HIV Organ Policy Equity Act "/>
-
+                        android:textSize="14sp"/>
                 </LinearLayout>
 
             </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@android:color/white"
+            android:layout_margin="8dp"
+            android:elevation="4dp"
+            android:padding="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="148dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/bill_title"
+                    android:text="Bills Sponsored"
+                    android:textColor="@color/colorDeepBlue"
+                    android:layout_marginRight="8dp"
+                    android:textStyle="bold"
+                    android:textSize="16sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/bill_value"
+                    android:textSize="14sp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

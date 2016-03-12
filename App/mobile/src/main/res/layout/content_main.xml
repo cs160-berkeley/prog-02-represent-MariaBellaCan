@@ -63,8 +63,7 @@
                     android:layout_height="wrap_content"
                     android:text="Find your representatives"
                     android:id="@+id/find_representative"
-                    android:textStyle="bold"
-                    android:textSize="24dp"
+                    android:textSize="24sp"
                     android:textColor="@color/colorDeepBlue"
                     android:layout_gravity="center"/>
 
@@ -103,7 +102,7 @@
                     android:textColor="#FFFFFF"
                     android:layout_gravity="center"
                     android:elevation="4dp"
-                    android:onClick="findOnClick"/>
+                    android:onClick="currentLocation"/>
 
             </LinearLayout>
 

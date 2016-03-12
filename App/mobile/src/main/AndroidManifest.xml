@@ -3,6 +3,9 @@
     package="com.example.mariacan.campaignupdates2016">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission
+        android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -46,6 +49,8 @@
         </service>
         <meta-data
             android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY" android:value="AIzaSyC8qDvWWamJC00lC1M_UVRSvY4aWhER550"/>
     </application>
 
 </manifest>

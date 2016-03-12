@@ -26,10 +26,10 @@ public class Message extends WearableListenerService implements GoogleApiClient.
         byte[] message = messageEvent.getData();
 
 
-        if (path.equals("mainActivity")){
+        if (path.equals("watchMainActivity")){
             System.out.println("MESSAGE" + path);
             Intent mainActivity = new Intent(this, MainActivity.class);
-            mainActivity.putExtra("zipcode", message);
+            mainActivity.putExtra("congressionalInfo", message);
             mainActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(mainActivity);
         } else if (path.equals("voteView")){
@@ -49,9 +49,6 @@ public class Message extends WearableListenerService implements GoogleApiClient.
                 .addConnectionCallbacks(new Message())
                 .build();
         googleApiClient.connect();
-
-
-
     }
 
     @Override
